@@ -5,7 +5,6 @@ import com.keo.restfulframework.model.UserAccount;
 import com.keo.restfulframework.model.request.UserRequest;
 import com.keo.restfulframework.service.UserService;
 import com.keo.restfulframework.utils.Response;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class UserController {
     }
 //Create New User
     @PostMapping("/new-user")
-    public Response<User> createUser(@Valid @RequestBody UserRequest request){
+    public Response<User> createUser(@RequestBody UserRequest request){
 //        try{
 //            int affectRow = userService.createNewUser(user);
 //            System.out.println("Row :" +affectRow);
@@ -71,7 +70,7 @@ public class UserController {
                 return Response.<User>badRequest().setMessage("Bad Request ! Failed to create User").setSuccess(false);
             }
         }catch (Exception ex){
-            return Response.<User>exception().setMessage("Exception occeur! Failed to retrieved all User! ").setSuccess(false);
+            return Response.<User>exception().setMessage("Exception Occurred! Failed to retrieved all User! ").setSuccess(false);
         }
 
     }
@@ -103,11 +102,11 @@ public class UserController {
                 //deletede success
                 return Response.<Objects>deleteSuccess().setMessage("Successfullly remove the user !").setSuccess(true);
             }else{
-                return Response.<Objects>notFound().setMessage("USer with id = "+id+" doesn't in our system");
+                return Response.<Objects>notFound().setMessage("User with id = "+id+" doesn't in our system");
             }
 
         }catch (Exception ex){
-            return Response.<Objects>exception().setMessage("Exception occured @ ! Faied todeltethe user").setSuccess(false);
+            return Response.<Objects>exception().setMessage("Exception Occurred! Faied todeltethe user").setSuccess(false);
         }
     }
 
